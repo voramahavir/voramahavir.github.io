@@ -583,11 +583,11 @@ footer a{color:var(--teal);text-decoration:none}
       </div>
       <form class="cform" onsubmit="sendMsg(event)">
         <div class="crow">
-          <div class="cg"><label>Name</label><input type="text" placeholder="Jane Smith" required/></div>
-          <div class="cg"><label>Email</label><input type="email" placeholder="jane@company.com" required/></div>
+          <div class="cg"><label>Name</label><input id="name" type="text" placeholder="Jane Smith" required/></div>
+          <div class="cg"><label>Email</label><input id="email" type="email" placeholder="jane@company.com" required/></div>
         </div>
-        <div class="cg"><label>Subject</label><input type="text" placeholder="Let's talk about..."/></div>
-        <div class="cg"><label>Message</label><textarea placeholder="Tell me about the opportunity or project..."></textarea></div>
+        <div class="cg"><label>Subject</label><input id="subject" type="text" placeholder="Let's talk about..."/></div>
+        <div class="cg"><label>Message</label><textarea id="message" placeholder="Tell me about the opportunity or project..."></textarea></div>
         <button type="submit" class="csend">Send Message →</button>
         <p class="cnote" id="cnote"></p>
       </form>
@@ -635,11 +635,55 @@ function toggleNav(){
 }
 
 // Form
-function sendMsg(e){
-  e.preventDefault();
-  document.getElementById('cnote').textContent='✓ Message sent! Mahavir will get back to you shortly.';
-  e.target.reset();
-}
+async function sendMsg(e) {
+    e.preventDefault();
+
+    const note = document.getElementById("cnote");
+    const btn = document.getElementById("submitBtn");
+
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const subject = document.getElementById("subject").value;
+    const message = document.getElementById("message").value;
+
+    // Basic validation
+    if (!name || !email || !message) {
+      note.innerText = "Please fill all required fields.";
+      note.style.color = "red";
+      return;
+    }
+
+    btn.disabled = true;
+    btn.innerText = "Sending...";
+
+    const formUrl =
+      "https://docs.google.com/forms/d/e/1FAIpQLScUuigQBOJAXu1qIsMYfnr-evAyJ3TUgaYUzDCq1zdFJmP1Ow/formResponse";
+
+    const formData = new FormData();
+    formData.append("entry.465740589", name);
+    formData.append("entry.1122199151", email);
+    formData.append("entry.1683567598", subject);
+    formData.append("entry.563925830", message);
+
+    try {
+      await fetch(formUrl, {
+        method: "POST",
+        mode: "no-cors",
+        body: formData,
+      });
+
+      // Success (optimistic due to no-cors)
+      document.getElementById('cnote').textContent='✓ Message sent! Mahavir will get back to you shortly.';
+      document.querySelector(".cform").reset();
+    } catch (error) {
+      console.error(error);
+      note.innerText = "Failed to send the message. Please try again.";
+      note.style.color = "red";
+    } finally {
+      btn.disabled = false;
+      btn.innerText = "Send Message →";
+    }
+  }
 </script>
 </body>
 </html>
