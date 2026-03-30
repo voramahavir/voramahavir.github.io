@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mahavir Vora — Engineering Manager & Full-Stack Architect</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --teal:#0D9488;--tl:#CCFBF1;--tm:#5EEAD4;--td:#0F6E56;
+  --ink:#1e293b;--ink2:#334155;--muted:#64748b;--bg:#f8fafc;
+  --white:#fff;--bdr:#e2e8f0;
+  --font:'Segoe UI',system-ui,-apple-system,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--ink);line-height:1.6}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--bdr)}
+.nav-inner{max-width:1140px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:66px}
+.nav-logo{display:flex;align-items:center;gap:.6rem;text-decoration:none}
+.nav-mark{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--teal),var(--td));display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.nav-mark svg{display:block}
+.nav-wordmark{display:flex;flex-direction:column;line-height:1.2}
+.nav-name{font-weight:800;font-size:.92rem;color:var(--ink);letter-spacing:-.3px}
+.nav-role{font-size:.62rem;color:var(--muted);font-weight:500}
+.nav-links{display:flex;gap:1.6rem;list-style:none}
+.nav-links a{text-decoration:none;font-size:.8rem;color:var(--muted);font-weight:500;transition:color .2s;padding-bottom:2px;border-bottom:2px solid transparent}
+.nav-links a:hover,.nav-links a.active{color:var(--teal);border-bottom-color:var(--teal)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;border:none;background:none}
+.hamburger span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;background:linear-gradient(135deg,#0b1120 0%,#0f172a 55%,#0d2720 100%);position:relative;overflow:hidden}
+.hero-dots{position:absolute;inset:0;background-image:radial-gradient(rgba(13,148,136,.12) 1px,transparent 1px);background-size:36px 36px;pointer-events:none}
+.hero-glow{position:absolute;top:-100px;right:-60px;width:480px;height:480px;background:radial-gradient(circle,rgba(13,148,136,.07) 0%,transparent 70%);pointer-events:none}
+.hero-inner{max-width:1140px;margin:0 auto;padding:7rem 2rem 5rem;display:grid;grid-template-columns:1fr 300px;gap:5rem;align-items:center;width:100%}
+
+.eyebrow{display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem}
+.eyebrow-line{width:36px;height:2px;background:var(--tm);border-radius:2px;flex-shrink:0}
+.eyebrow-text{color:var(--tm);font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+
+h1.hname{font-size:clamp(3rem,5.5vw,5rem);font-weight:900;color:#fff;line-height:1.0;margin-bottom:1.25rem;letter-spacing:-.5px}
+h1.hname em{color:var(--tm);font-style:normal;display:block}
+
+.hdesc{color:#94a3b8;font-size:1rem;max-width:500px;margin-bottom:1.75rem;line-height:1.9}
+
+.hpills{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2.25rem}
+.hpill{background:rgba(94,234,212,.08);border:1px solid rgba(94,234,212,.18);color:#94a3b8;padding:.3rem .9rem;border-radius:6px;font-size:.775rem;font-weight:500}
+
+.hbtns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.75rem}
+.btn-teal{background:var(--teal);color:#fff;padding:.8rem 1.9rem;border-radius:10px;text-decoration:none;font-weight:700;font-size:.9rem;border:2px solid var(--teal);transition:all .2s;display:inline-block}
+.btn-teal:hover{background:var(--td);border-color:var(--td);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--tm);padding:.8rem 1.9rem;border-radius:10px;text-decoration:none;font-weight:600;font-size:.9rem;border:2px solid rgba(94,234,212,.4);transition:all .2s;display:inline-block}
+.btn-ghost:hover{background:rgba(94,234,212,.08);transform:translateY(-2px)}
+
+.hstats{display:flex;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:14px;width:fit-content;overflow:hidden}
+.hst{padding:1.1rem 1.5rem;text-align:center;border-right:1px solid rgba(255,255,255,.07)}
+.hst:last-child{border-right:none}
+.hst-n{font-size:1.65rem;font-weight:900;color:var(--tm);display:block;line-height:1}
+.hst-l{font-size:.63rem;color:#64748b;text-transform:uppercase;letter-spacing:.07em;margin-top:.3rem;display:block}
+
+.hphoto-col{display:flex;flex-direction:column;align-items:center;gap:1.1rem}
+.hphoto-frame{position:relative;width:260px;height:292px;border-radius:20px;overflow:hidden;border:3px solid rgba(94,234,212,.28);box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.hphoto-frame img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+.hphoto-frame::after{content:'';position:absolute;inset:-9px;border-radius:26px;border:1px dashed rgba(94,234,212,.12);pointer-events:none}
+.chess-pill{background:rgba(13,148,136,.14);border:1px solid rgba(94,234,212,.22);border-radius:10px;padding:.7rem 1.1rem;text-align:center;width:100%}
+.chess-pill-icon{font-size:1.5rem;display:block;margin-bottom:.2rem}
+.chess-pill-t{color:var(--tm);font-size:.71rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;display:block}
+.chess-pill-s{color:#64748b;font-size:.64rem;margin-top:.15rem;display:block}
+
+/* SECTIONS */
+section{padding:5.5rem 2rem}
+.wrap{max-width:1140px;margin:0 auto}
+.slabel{display:inline-block;color:var(--teal);font-size:.71rem;font-weight:700;text-transform:uppercase;letter-spacing:.13em;margin-bottom:.55rem}
+.stitle{font-size:clamp(1.8rem,3vw,2.35rem);font-weight:800;color:var(--ink);margin-bottom:.55rem}
+.sbar{width:44px;height:4px;background:var(--teal);border-radius:4px;margin-bottom:1.2rem}
+.ssub{color:var(--muted);font-size:.94rem;max-width:560px;margin-bottom:2.75rem;line-height:1.78}
+
+/* ABOUT */
+#about{background:var(--white)}
+.about-grid{display:grid;grid-template-columns:220px 1fr;gap:3.5rem;align-items:start}
+.about-img{width:220px;height:250px;border-radius:18px;object-fit:cover;object-position:top;border:3px solid var(--tl);display:block}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.9rem}
+.chip{background:var(--tl);color:var(--td);padding:.27rem .72rem;border-radius:99px;font-size:.72rem;font-weight:600}
+.about-body p{color:var(--muted);margin-bottom:.9rem;line-height:1.85;font-size:.95rem}
+.about-body strong{color:var(--ink2)}
+.hcards{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;margin-top:1.5rem}
+.hcard{background:var(--bg);border:1px solid var(--bdr);border-radius:12px;padding:.9rem 1.1rem;border-left:3px solid var(--teal)}
+.hcard h4{font-size:.81rem;font-weight:700;color:var(--ink);margin-bottom:.2rem}
+.hcard p{font-size:.77rem;color:var(--muted);margin:0;line-height:1.5}
+
+/* SKILLS */
+#skills{background:var(--bg)}
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.35rem}
+.sc{background:var(--white);border:1px solid var(--bdr);border-radius:16px;padding:1.5rem;transition:transform .2s,box-shadow .2s}
+.sc:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(13,148,136,.09)}
+.si{width:44px;height:44px;border-radius:12px;background:var(--tl);display:flex;align-items:center;justify-content:center;font-size:1.25rem;margin-bottom:.9rem}
+.sc h3{font-size:.94rem;font-weight:700;color:var(--ink);margin-bottom:.75rem}
+.stags{display:flex;flex-wrap:wrap;gap:.38rem}
+.stag{background:var(--bg);border:1px solid var(--bdr);color:var(--ink2);padding:.22rem .58rem;border-radius:6px;font-size:.71rem;font-weight:500}
+.stag.h{background:var(--tl);border-color:var(--tm);color:var(--td)}
+
+/* EXPERIENCE */
+#experience{background:var(--white)}
+.tl{position:relative;padding-left:2.25rem}
+.tl::before{content:'';position:absolute;left:.6rem;top:.5rem;bottom:.5rem;width:2px;background:linear-gradient(to bottom,var(--teal),var(--tl))}
+.ti{position:relative;margin-bottom:2.2rem}
+.ti:last-child{margin-bottom:0}
+.tdot{position:absolute;left:-1.7rem;top:.45rem;width:14px;height:14px;border-radius:50%;background:var(--teal);border:3px solid var(--white);box-shadow:0 0 0 2px var(--teal)}
+.tc{background:var(--bg);border:1px solid var(--bdr);border-radius:16px;padding:1.5rem;transition:transform .2s,box-shadow .2s}
+.tc:hover{transform:translateX(5px);box-shadow:0 8px 30px rgba(0,0,0,.06)}
+.eh{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:.5rem;margin-bottom:.2rem}
+.erole{font-size:1.01rem;font-weight:700;color:var(--ink)}
+.edate{background:var(--tl);color:var(--td);padding:.17rem .68rem;border-radius:99px;font-size:.71rem;font-weight:600;white-space:nowrap}
+.eco{color:var(--teal);font-weight:600;font-size:.86rem;margin-bottom:.75rem}
+.eco span{color:var(--muted);font-weight:400}
+.ebullets{list-style:none;display:flex;flex-direction:column;gap:.4rem}
+.ebullets li{color:var(--muted);font-size:.86rem;padding-left:1.1rem;position:relative;line-height:1.65}
+.ebullets li::before{content:'▸';position:absolute;left:0;color:var(--teal);font-size:.68rem;top:.18rem}
+
+/* CHESS */
+#chess{background:var(--bg)}
+.chess-photos{display:grid;grid-template-columns:1fr 1fr;gap:1.75rem;margin-bottom:2rem}
+.cpwrap{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:3/4;box-shadow:0 8px 32px rgba(0,0,0,.12)}
+.cpwrap img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform .4s}
+.cpwrap:hover img{transform:scale(1.04)}
+.cpcap{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(8,16,28,.92) 0%,rgba(8,16,28,.4) 60%,transparent 100%);padding:1.4rem 1.1rem .95rem}
+.cpcap strong{display:block;color:#fff;font-size:.88rem;font-weight:700;margin-bottom:.2rem}
+.cpcap span{color:var(--tm);font-size:.74rem;font-weight:600}
+.chess-info{background:var(--white);border:1px solid var(--bdr);border-radius:18px;padding:2rem;display:flex;flex-direction:column;gap:1.5rem}
+.cirow{display:flex;align-items:flex-start;gap:1.1rem}
+.ciicon{width:48px;height:48px;min-width:48px;border-radius:12px;background:var(--tl);display:flex;align-items:center;justify-content:center;font-size:1.4rem}
+.citext h4{font-size:.94rem;font-weight:700;color:var(--ink);margin-bottom:.22rem}
+.citext p{font-size:.8rem;color:var(--muted);line-height:1.6}
+
+/* PROJECTS */
+#projects{background:var(--white)}
+.pg{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.35rem}
+.pc{background:var(--white);border:1px solid var(--bdr);border-radius:16px;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.pc:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(13,148,136,.1)}
+.ptop{padding:1.35rem 1.35rem .9rem;background:linear-gradient(135deg,var(--tl),#dffaf4)}
+.pem{font-size:1.8rem;margin-bottom:.35rem}
+.ptyp{font-size:.68rem;color:var(--td);font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.pc h3{font-size:.99rem;font-weight:700;color:var(--ink);margin-top:.18rem}
+.pbody{padding:1rem 1.35rem 1.35rem}
+.pbody p{color:var(--muted);font-size:.845rem;line-height:1.72;margin-bottom:.9rem}
+.pstack{display:flex;flex-wrap:wrap;gap:.32rem}
+.ptag{background:var(--ink);color:#e2e8f0;padding:.18rem .52rem;border-radius:5px;font-size:.67rem;font-weight:600;font-family:monospace}
+
+/* ACHIEVEMENTS */
+#achievements{background:var(--bg)}
+.ag{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem}
+.ac{background:var(--white);border:1px solid var(--bdr);border-radius:14px;padding:1.2rem;display:flex;gap:1rem;align-items:flex-start;transition:transform .2s,box-shadow .2s}
+.ac:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(13,148,136,.08)}
+.ai{width:42px;height:42px;min-width:42px;border-radius:10px;background:var(--tl);display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+.ab h4{font-size:.87rem;font-weight:700;color:var(--ink);margin-bottom:.22rem}
+.ab p{font-size:.77rem;color:var(--muted);line-height:1.5}
+
+/* CERTS */
+#certifications{background:var(--white)}
+.certg{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.2rem}
+.certc{background:var(--bg);border:1px solid var(--bdr);border-radius:14px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem;transition:transform .2s,box-shadow .2s}
+.certc:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(13,148,136,.1)}
+.cbadge{width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.88rem;flex-shrink:0}
+.cinfo h4{font-size:.87rem;font-weight:700;color:var(--ink);margin-bottom:.18rem}
+.cinfo p{font-size:.75rem;color:var(--muted)}
+.cyr{font-size:.69rem;color:var(--teal);font-weight:600;margin-top:.2rem}
+
+/* BLOG */
+#blog{background:var(--bg)}
+.blogc{background:var(--white);border:1px solid var(--bdr);border-radius:16px;padding:1.9rem;display:flex;gap:1.75rem;align-items:flex-start;transition:transform .2s,box-shadow .2s}
+.blogc:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,0,0,.07)}
+.blogn{font-size:3.5rem;font-weight:900;color:var(--tl);line-height:1;min-width:3rem;user-select:none}
+.blogc h3{font-size:1.04rem;font-weight:700;color:var(--ink);margin-bottom:.5rem}
+.blogc p{color:var(--muted);font-size:.86rem;line-height:1.75;margin-bottom:.8rem}
+.bloga{color:var(--teal);font-size:.84rem;font-weight:600;text-decoration:none}
+.bloga:hover{text-decoration:underline}
+.blogt{background:var(--tl);color:var(--td);padding:.2rem .7rem;border-radius:99px;font-size:.7rem;font-weight:600;display:inline-block;margin-bottom:.7rem}
+
+/* CONTACT */
+#contact{background:linear-gradient(135deg,#0b1120 0%,#0f172a 60%,#0d2720 100%);color:#fff}
+#contact .slabel{color:var(--tm)}
+#contact .stitle{color:#fff}
+#contact .ssub{color:#94a3b8}
+#contact .sbar{background:var(--tm)}
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:start}
+.cinfo-col{display:flex;flex-direction:column;gap:1.25rem}
+.citem{display:flex;align-items:center;gap:1rem}
+.cicon{width:44px;height:44px;border-radius:10px;background:rgba(13,148,136,.18);border:1px solid rgba(94,234,212,.18);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.ctext{font-size:.9rem;color:#cbd5e1}
+.ctext strong{display:block;color:#fff;font-size:.73rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.1rem}
+.cform{display:flex;flex-direction:column;gap:1rem}
+.crow{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.cg{display:flex;flex-direction:column;gap:.4rem}
+.cg label{font-size:.73rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.06em}
+.cg input,.cg textarea{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);border-radius:10px;padding:.75rem 1rem;color:#fff;font-size:.9rem;font-family:var(--font);outline:none;transition:border .2s,background .2s;width:100%}
+.cg input::placeholder,.cg textarea::placeholder{color:rgba(255,255,255,.28)}
+.cg input:focus,.cg textarea:focus{border-color:rgba(94,234,212,.45);background:rgba(255,255,255,.1)}
+.cg textarea{resize:vertical;min-height:115px}
+.csend{background:var(--teal);color:#fff;border:none;padding:.85rem 2rem;border-radius:10px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:var(--font);transition:all .2s}
+.csend:hover{background:var(--td);transform:translateY(-2px)}
+.cnote{font-size:.78rem;color:#5EEAD4;min-height:1.2em;margin-top:.2rem}
+
+/* FOOTER */
+footer{background:#070e1a;color:#475569;text-align:center;padding:2rem;font-size:.82rem;border-top:1px solid rgba(255,255,255,.05)}
+footer a{color:var(--teal);text-decoration:none}
+
+/* HERO ANIMATION */
+@keyframes fup{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.fa > *{animation:fup .65s ease both}
+.fa > *:nth-child(1){animation-delay:.05s}
+.fa > *:nth-child(2){animation-delay:.15s}
+.fa > *:nth-child(3){animation-delay:.24s}
+.fa > *:nth-child(4){animation-delay:.32s}
+.fa > *:nth-child(5){animation-delay:.4s}
+.fa > *:nth-child(6){animation-delay:.48s}
+
+/* SCROLL REVEAL — content starts VISIBLE, JS hides below-fold items */
+.rv{transition:opacity .55s ease,transform .55s ease}
+.rv.off{opacity:0;transform:translateY(26px)}
+
+/* RESPONSIVE */
+@media(max-width:920px){
+  .hero-inner{grid-template-columns:1fr;gap:2.5rem;text-align:center}
+  .eyebrow{justify-content:center}
+  .hpills,.hbtns,.hstats{justify-content:center}
+  .hdesc{margin-left:auto;margin-right:auto}
+  .hphoto-col{flex-direction:row;justify-content:center}
+  .hphoto-frame{width:200px;height:225px}
+  .about-grid{grid-template-columns:1fr}
+  .about-img,.chips{display:none}
+  .cgrid{grid-template-columns:1fr}
+  .chess-photos{grid-template-columns:1fr}
+}
+@media(max-width:760px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  section{padding:4rem 1.25rem}
+  .hero-inner{padding:5.5rem 1.25rem 3.5rem}
+  .hcards{grid-template-columns:1fr}
+  .crow{grid-template-columns:1fr}
+  .blogc{flex-direction:column;gap:.75rem}
+  .blogn{font-size:2.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#hero">
+      <div class="nav-mark">
+        <svg width="22" height="16" viewBox="0 0 22 16" fill="none">
+          <path d="M1 15L5.5 1L11 10L16.5 1L21 15" stroke="white" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="nav-wordmark">
+        <span class="nav-name">Mahavir Vora</span>
+        <span class="nav-role">Engineering Manager</span>
+      </div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#chess">Chess</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#achievements">Awards</a></li>
+      <li><a href="#certifications">Certs</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleNav()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-dots"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="fa">
+      <div class="eyebrow">
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-text">Engineering Manager · Full-Stack Architect</span>
+      </div>
+      <h1 class="hname">Mahavir<em>Vora</em></h1>
+      <p class="hdesc">10+ years building scalable web applications and leading high-performance engineering teams. Specializing in Angular, .NET 8, React, and AI-driven product development.</p>
+      <div class="hpills">
+        <span class="hpill">Angular · React</span>
+        <span class="hpill">.NET 8 · Node.js</span>
+        <span class="hpill">Team Leadership</span>
+        <span class="hpill">Generative AI</span>
+        <span class="hpill">System Architecture</span>
+      </div>
+      <div class="hbtns">
+        <a href="#contact" class="btn-teal">Get in Touch</a>
+        <a href="#experience" class="btn-ghost">View My Work</a>
+      </div>
+      <div class="hstats">
+        <div class="hst"><span class="hst-n">10+</span><span class="hst-l">Years Exp.</span></div>
+        <div class="hst"><span class="hst-n">4×</span><span class="hst-l">Promotions</span></div>
+        <div class="hst"><span class="hst-n">3</span><span class="hst-l">Certifications</span></div>
+        <div class="hst"><span class="hst-n">2×</span><span class="hst-l">Chess Champ</span></div>
+      </div>
+    </div>
+    <div class="hphoto-col">
+      <div class="hphoto-frame">
+        <img src="mahavirvora.png" alt="Mahavir Vora"/>
+      </div>
+      <div class="chess-pill">
+        <span class="chess-pill-icon">♟</span>
+        <span class="chess-pill-t">Encora Chess Champion</span>
+        <span class="chess-pill-s">2025 &amp; 2026 · Back-to-Back</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="rv">
+      <span class="slabel">Who I Am</span>
+      <h2 class="stitle">About Me</h2>
+      <div class="sbar"></div>
+    </div>
+    <div class="about-grid rv">
+      <div>
+        <img src="mahavirvora.png" alt="Mahavir Vora" class="about-img"/>
+        <div class="chips">
+          <span class="chip">Ahmedabad, India</span>
+          <span class="chip">Open to Relocation</span>
+          <span class="chip">Remote Ready</span>
+        </div>
+      </div>
+      <div class="about-body">
+        <p>I'm a results-driven <strong>Engineering Manager and Full-Stack Architect</strong> with over 10 years of hands-on experience building scalable, high-performance web applications. Currently leading engineering at <strong>Encora Inc.</strong>, where I oversee Angular-powered in-store retail applications deployed on Microsoft Surface devices.</p>
+        <p>My journey from Software Engineer to Engineering Manager at the same company reflects not just technical growth, but a genuine passion for building teams, mentoring engineers, and creating lasting engineering culture. I believe the best software is built by empowered, well-mentored teams.</p>
+        <p>Outside work, I contribute to the developer community through technical writing and am passionate about how AI can augment engineering workflows — and I've proven strategic thinking extends beyond the keyboard, winning the Encora Chess Tournament back-to-back in 2025 and 2026.</p>
+        <div class="hcards">
+          <div class="hcard"><h4>Leadership Philosophy</h4><p>Empower teams, enforce quality, ship with confidence</p></div>
+          <div class="hcard"><h4>Tech Focus</h4><p>Angular, .NET 8, React, Node.js, AI Integration</p></div>
+          <div class="hcard"><h4>Looking For</h4><p>Full-time Engineering Manager or Architect roles</p></div>
+          <div class="hcard"><h4>Education</h4><p>B.E. Computer Engineering, Gujarat — 2015</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="rv">
+      <span class="slabel">What I Know</span>
+      <h2 class="stitle">Skills &amp; Tech Stack</h2>
+      <div class="sbar"></div>
+      <p class="ssub">A decade of hands-on experience across frontend, backend, databases, DevOps, and engineering leadership.</p>
+    </div>
+    <div class="sg rv">
+      <div class="sc"><div class="si">⚡</div><h3>Frontend</h3><div class="stags"><span class="stag h">Angular</span><span class="stag h">React</span><span class="stag h">TypeScript</span><span class="stag">JavaScript ES6+</span><span class="stag">RxJS</span><span class="stag">NgRx</span><span class="stag">HTML5</span><span class="stag">CSS3</span></div></div>
+      <div class="sc"><div class="si">🔧</div><h3>Backend</h3><div class="stags"><span class="stag h">.NET 8</span><span class="stag h">ASP.NET Core</span><span class="stag">Node.js</span><span class="stag">Express.js</span><span class="stag">PHP CodeIgniter</span><span class="stag">REST APIs</span><span class="stag">WPF</span></div></div>
+      <div class="sc"><div class="si">🗄️</div><h3>Databases</h3><div class="stags"><span class="stag h">MySQL</span><span class="stag h">MongoDB</span><span class="stag">SQL Optimization</span><span class="stag">Database Design</span><span class="stag">DotNetNuke</span></div></div>
+      <div class="sc"><div class="si">🚀</div><h3>DevOps &amp; Tools</h3><div class="stags"><span class="stag h">Git</span><span class="stag">SVN</span><span class="stag">Azure DevOps</span><span class="stag">CI/CD Pipelines</span><span class="stag">VS Code</span><span class="stag">Visual Studio</span></div></div>
+      <div class="sc"><div class="si">🏗️</div><h3>Architecture</h3><div class="stags"><span class="stag h">Scalable Systems</span><span class="stag">Component-Driven Dev</span><span class="stag">Legacy Modernization</span><span class="stag">Microservices</span><span class="stag">System Design</span></div></div>
+      <div class="sc"><div class="si">🤖</div><h3>AI &amp; Leadership</h3><div class="stags"><span class="stag h">GenAI Integration</span><span class="stag">LLM Tooling</span><span class="stag">Agile / Scrum</span><span class="stag">Team Mentoring</span><span class="stag">Code Reviews</span><span class="stag">Risk Management</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="rv">
+      <span class="slabel">Career Journey</span>
+      <h2 class="stitle">Work Experience</h2>
+      <div class="sbar"></div>
+    </div>
+    <div class="tl rv">
+
+      <div class="ti"><div class="tdot"></div>
+        <div class="tc">
+          <div class="eh"><span class="erole">Engineering Manager</span><span class="edate">Jul 2025 – Present</span></div>
+          <div class="eco">Encora Inc. <span>· Ahmedabad, India</span></div>
+          <ul class="ebullets">
+            <li>Lead architecture, upgrades and feature delivery for Angular applications supporting in-store retail operations on Microsoft Surface devices.</li>
+            <li>Mentor and coach engineers and tech leads, establishing high code quality standards and a culture of continuous improvement.</li>
+            <li>Align engineering roadmap with product and business stakeholders for strategic delivery.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ti"><div class="tdot"></div>
+        <div class="tc">
+          <div class="eh"><span class="erole">Senior Technical Lead</span><span class="edate">May 2022 – Jun 2025</span></div>
+          <div class="eco">Encora Inc. <span>· Ahmedabad, India</span></div>
+          <ul class="ebullets">
+            <li>Architected and led Angular modernization, migrating legacy codebase to latest LTS with improved performance and maintainability.</li>
+            <li>Drove .NET 8 and WPF migration, eliminating technical debt and future-proofing systems.</li>
+            <li>Achieved full automated test coverage on complex modules including pinch-zoom and SKU management.</li>
+            <li>Contributed to AI-driven proof-of-concept initiatives exploring GenAI capabilities.</li>
+            <li>Oversaw end-to-end product lifecycle from planning through production deployment.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ti"><div class="tdot"></div>
+        <div class="tc">
+          <div class="eh"><span class="erole">Technical Lead</span><span class="edate">May 2020 – Apr 2022</span></div>
+          <div class="eco">Encora Inc. <span>· Ahmedabad, India</span></div>
+          <ul class="ebullets">
+            <li>Led scalable front-end and back-end feature development, championing component-driven architecture.</li>
+            <li>Independently delivered full backend projects — API design, MySQL architecture, PHP CodeIgniter.</li>
+            <li>Contributed DotNetNuke performance improvements and advanced SQL data visualization.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ti"><div class="tdot"></div>
+        <div class="tc">
+          <div class="eh"><span class="erole">Senior Software Engineer</span><span class="edate">Nov 2019 – Apr 2020</span></div>
+          <div class="eco">Encora Inc. <span>· Ahmedabad, India</span></div>
+          <ul class="ebullets">
+            <li>Built high-quality Angular and .NET components in an agile team environment.</li>
+            <li>Introduced reusable UI component libraries that accelerated team development velocity.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ti"><div class="tdot"></div>
+        <div class="tc">
+          <div class="eh"><span class="erole">Software Engineer</span><span class="edate">Jun 2018 – Oct 2019</span></div>
+          <div class="eco">Encora Inc. <span>· Ahmedabad, India</span></div>
+          <ul class="ebullets">
+            <li>Shipped production features across full-stack applications using Angular, .NET, and PHP.</li>
+            <li>Collaborated with cross-functional teams to consistently deliver client requirements on schedule.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ti"><div class="tdot"></div>
+        <div class="tc">
+          <div class="eh"><span class="erole">Software Engineer</span><span class="edate">Sep 2015 – May 2018</span></div>
+          <div class="eco">BrillBrains Technolabs <span>· Ahmedabad, India</span></div>
+          <ul class="ebullets">
+            <li>Developed web applications using CodeIgniter, Core PHP, and Angular with RESTful web services.</li>
+            <li>Covered full lifecycle from requirements gathering through deployment and post-launch support.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CHESS -->
+<section id="chess">
+  <div class="wrap">
+    <div class="rv">
+      <span class="slabel">Beyond the Code</span>
+      <h2 class="stitle">Chess Championships</h2>
+      <div class="sbar"></div>
+      <p class="ssub">Back-to-back champion of the Encora internal Chess Tournament — proving that strategic thinking isn't limited to engineering.</p>
+    </div>
+    <div class="chess-photos rv">
+      <div class="cpwrap">
+        <img src="chess1.jpg" alt="Mahavir Vora playing chess at Encora Tournament 2025"/>
+        <div class="cpcap">
+          <strong>Deep in concentration during the tournament</strong>
+          <span>Encora Chess Tournament · Playing in Encora Jersey</span>
+        </div>
+      </div>
+      <div class="cpwrap">
+        <img src="chess2.jpg" alt="Mahavir Vora receiving chess trophy at Encora"/>
+        <div class="cpcap">
+          <strong>Back-to-back champion — gold medal &amp; trophy</strong>
+          <span>Encora HQ, Ahmedabad · Championship Ceremony</span>
+        </div>
+      </div>
+    </div>
+    <div class="chess-info rv">
+      <div class="cirow">
+        <div class="ciicon">♟</div>
+        <div class="citext"><h4>2× Tournament Champion (2025 &amp; 2026)</h4><p>Won the Encora Chess Tournament consecutively — a testament to patience, strategic foresight, and staying calm under pressure.</p></div>
+      </div>
+      <div class="cirow">
+        <div class="ciicon">🧠</div>
+        <div class="citext"><h4>Strategy Transfers to Engineering</h4><p>Chess hones the same thinking that makes a great Engineering Manager — anticipating downstream consequences, prioritising wisely, and staying composed in complex situations.</p></div>
+      </div>
+      <div class="cirow">
+        <div class="ciicon">🥇</div>
+        <div class="citext"><h4>Gold Medal &amp; Trophy Recipient</h4><p>Formally recognised with a gold medal and championship trophy at both Encora tournament events, held at Encora HQ, Ahmedabad.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="rv">
+      <span class="slabel">What I've Built</span>
+      <h2 class="stitle">Notable Projects</h2>
+      <div class="sbar"></div>
+    </div>
+    <div class="pg rv">
+      <div class="pc"><div class="ptop"><div class="pem">🏪</div><div class="ptyp">Retail Technology</div><h3>In-Store Sales Application Suite</h3></div><div class="pbody"><p>End-to-end technical leadership for Angular applications integrated with .NET 8 WPF, deployed on Microsoft Surface devices used by retail business teams across locations.</p><div class="pstack"><span class="ptag">Angular</span><span class="ptag">.NET 8</span><span class="ptag">WPF</span><span class="ptag">TypeScript</span><span class="ptag">Surface</span></div></div></div>
+      <div class="pc"><div class="ptop"><div class="pem">⚡</div><div class="ptyp">Framework Modernization</div><h3>Angular Modernization Program</h3></div><div class="pbody"><p>Planned and executed full migration of a large-scale Angular codebase to the latest LTS version, improving bundle performance, developer experience, and security posture.</p><div class="pstack"><span class="ptag">Angular</span><span class="ptag">TypeScript</span><span class="ptag">RxJS</span><span class="ptag">NgRx</span><span class="ptag">CI/CD</span></div></div></div>
+      <div class="pc"><div class="ptop"><div class="pem">🤖</div><div class="ptyp">AI / Innovation</div><h3>AI-Powered POC Exploration</h3></div><div class="pbody"><p>Contributed to multiple proof-of-concept initiatives integrating Generative AI capabilities into existing product workflows, evaluating feasibility for production adoption.</p><div class="pstack"><span class="ptag">GenAI</span><span class="ptag">LLMs</span><span class="ptag">Node.js</span><span class="ptag">REST APIs</span></div></div></div>
+      <div class="pc"><div class="ptop"><div class="pem">🔄</div><div class="ptyp">.NET Migration</div><h3>.NET 8 Transition Program</h3></div><div class="pbody"><p>Led strategic modernization of legacy .NET systems to .NET 8, ensuring forward compatibility, reducing technical debt, and establishing a future-ready architecture.</p><div class="pstack"><span class="ptag">.NET 8</span><span class="ptag">ASP.NET Core</span><span class="ptag">WPF</span><span class="ptag">SQL Server</span></div></div></div>
+      <div class="pc"><div class="ptop"><div class="pem">📊</div><div class="ptyp">Backend Engineering</div><h3>Full-Stack PHP Platform</h3></div><div class="pbody"><p>Independently delivered a complete backend platform including RESTful API design, MySQL database architecture, and a full PHP CodeIgniter implementation from scratch.</p><div class="pstack"><span class="ptag">PHP</span><span class="ptag">CodeIgniter</span><span class="ptag">MySQL</span><span class="ptag">REST API</span></div></div></div>
+      <div class="pc"><div class="ptop"><div class="pem">✅</div><div class="ptyp">Quality Engineering</div><h3>Test Coverage Initiative</h3></div><div class="pbody"><p>Achieved full automated test coverage on complex UI modules including pinch-zoom interactions and SKU management, dramatically improving release confidence and QA cycle time.</p><div class="pstack"><span class="ptag">Angular</span><span class="ptag">Jasmine</span><span class="ptag">Karma</span><span class="ptag">E2E Testing</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="wrap">
+    <div class="rv">
+      <span class="slabel">Recognition</span>
+      <h2 class="stitle">Achievements &amp; Leadership</h2>
+      <div class="sbar"></div>
+    </div>
+    <div class="ag rv">
+      <div class="ac"><div class="ai">♟</div><div class="ab"><h4>Encora Chess Champion × 2</h4><p>Back-to-back winner of the Encora Chess Tournament in 2025 and 2026, awarded gold medal and trophy at both events.</p></div></div>
+      <div class="ac"><div class="ai">🏆</div><div class="ab"><h4>Shine Award × 2</h4><p>Recognised twice for exceptional individual performance and project delivery at Encora Inc.</p></div></div>
+      <div class="ac"><div class="ai">👥</div><div class="ab"><h4>Team Excellence Award</h4><p>Honoured for leading collaborative engineering teams to deliver high-impact results.</p></div></div>
+      <div class="ac"><div class="ai">⭐</div><div class="ab"><h4>5 Years of Achievement</h4><p>Special recognition for sustained excellence and commitment over 5 years at Encora.</p></div></div>
+      <div class="ac"><div class="ai">📈</div><div class="ab"><h4>4× Promoted in 8 Years</h4><p>Progressed from Software Engineer to Engineering Manager at a single organisation — a rare achievement.</p></div></div>
+      <div class="ac"><div class="ai">🎯</div><div class="ab"><h4>Zero Critical Incidents</h4><p>Delivered the retail application suite across multiple major releases with no critical production incidents.</p></div></div>
+      <div class="ac"><div class="ai">💡</div><div class="ab"><h4>AI Innovation Leader</h4><p>Pioneered GenAI proof-of-concept initiatives, bringing emerging AI capabilities into product planning.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="wrap">
+    <div class="rv">
+      <span class="slabel">Credentials</span>
+      <h2 class="stitle">Certifications</h2>
+      <div class="sbar"></div>
+    </div>
+    <div class="certg rv">
+      <div class="certc"><div class="cbadge" style="background:#e8f0fe;color:#1a73e8">MS</div><div class="cinfo"><h4>Programming in HTML5 with JavaScript &amp; CSS3</h4><p>Microsoft — Exam 480</p><div class="cyr">Microsoft Certified</div></div></div>
+      <div class="certc"><div class="cbadge" style="background:#fef3c7;color:#d97706">AI</div><div class="cinfo"><h4>Generative AI for Everyone</h4><p>DeepLearning.AI / Coursera</p><div class="cyr">Andrew Ng's Course</div></div></div>
+      <div class="certc"><div class="cbadge" style="background:#d1fae5;color:#047857">MDB</div><div class="cinfo"><h4>MongoDB SI Associate Certification</h4><p>MongoDB University</p><div class="cyr">MongoDB Certified</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog">
+  <div class="wrap">
+    <div class="rv">
+      <span class="slabel">Thought Leadership</span>
+      <h2 class="stitle">Blog &amp; Articles</h2>
+      <div class="sbar"></div>
+      <p class="ssub">Sharing knowledge with the developer community through practical, in-depth technical writing.</p>
+    </div>
+    <div class="rv">
+      <div class="blogc">
+        <div class="blogn">01</div>
+        <div>
+          <span class="blogt">npm · Node.js · Best Practices</span>
+          <h3>A Developer's Guide to package.json: Best Practices from Basics to Mastery</h3>
+          <p>A comprehensive deep-dive into npm's package.json — covering everything from basic configuration to advanced patterns like workspaces, scripts automation, semantic versioning, and production-ready dependency management strategies used in large-scale applications.</p>
+          <a class="bloga" href="https://www.encora.com/insights/a-developers-guide-to-package.json-best-practices-from-basics-to-mastery" target="_blank">Read on Encora Insights →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="rv">
+      <span class="slabel">Let's Connect</span>
+      <h2 class="stitle">Get In Touch</h2>
+      <div class="sbar"></div>
+      <p class="ssub">Interested in working together or just want to say hello? Drop me a message.</p>
+    </div>
+    <div class="cgrid rv">
+      <div class="cinfo-col">
+        <div class="citem"><div class="cicon">📞</div><div class="ctext"><strong>Phone</strong>+91 971 433 6612</div></div>
+        <div class="citem"><div class="cicon">✉</div><div class="ctext"><strong>Email</strong>voramahavir@gmail.com</div></div>
+        <div class="citem"><div class="cicon">📍</div><div class="ctext"><strong>Location</strong>Ahmedabad, India · Open to Relocation</div></div>
+        <div class="citem"><div class="cicon">💼</div><div class="ctext"><strong>LinkedIn</strong>linkedin.com/in/mahavir-vora</div></div>
+      </div>
+      <form class="cform" onsubmit="sendMsg(event)">
+        <div class="crow">
+          <div class="cg"><label>Name</label><input type="text" placeholder="Jane Smith" required/></div>
+          <div class="cg"><label>Email</label><input type="email" placeholder="jane@company.com" required/></div>
+        </div>
+        <div class="cg"><label>Subject</label><input type="text" placeholder="Let's talk about..."/></div>
+        <div class="cg"><label>Message</label><textarea placeholder="Tell me about the opportunity or project..."></textarea></div>
+        <button type="submit" class="csend">Send Message →</button>
+        <p class="cnote" id="cnote"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Mahavir Vora &nbsp;·&nbsp; Engineering Manager &amp; Full-Stack Architect &nbsp;·&nbsp; <a href="mailto:voramahavir@gmail.com">voramahavir@gmail.com</a></p>
+</footer>
+
+<script>
+// Scroll reveal — content starts visible; only elements below viewport start hidden
+(function(){
+  var els = document.querySelectorAll('.rv');
+  var vh = window.innerHeight;
+  els.forEach(function(el){
+    if(el.getBoundingClientRect().top > vh * 0.9){ el.classList.add('off'); }
+  });
+  if(!window.IntersectionObserver) return;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.remove('off'); io.unobserve(e.target); }
+    });
+  },{threshold:0.07, rootMargin:'0px 0px -30px 0px'});
+  els.forEach(function(el){ if(el.classList.contains('off')) io.observe(el); });
+})();
+
+// Active nav
+var secs = document.querySelectorAll('section[id]');
+var nas  = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', function(){
+  var cur='';
+  secs.forEach(function(s){ if(window.scrollY >= s.offsetTop - 90) cur = s.id; });
+  nas.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href')==='#'+cur); });
+},{passive:true});
+
+// Mobile nav
+function toggleNav(){
+  var nl = document.getElementById('navLinks');
+  var open = nl.style.display==='flex';
+  nl.style.cssText = open ? '' :
+    'display:flex;flex-direction:column;position:absolute;top:66px;left:0;right:0;background:rgba(255,255,255,.98);border-bottom:1px solid #e2e8f0;padding:1.25rem 2rem;gap:1rem;z-index:99;box-shadow:0 8px 24px rgba(0,0,0,.08)';
+}
+
+// Form
+function sendMsg(e){
+  e.preventDefault();
+  document.getElementById('cnote').textContent='✓ Message sent! Mahavir will get back to you shortly.';
+  e.target.reset();
+}
+</script>
+</body>
+</html>
