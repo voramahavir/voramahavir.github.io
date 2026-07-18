@@ -18,7 +18,7 @@
 <meta name="author" content="Mahavir Vora" />
 <meta name="robots" content="index, follow">
 <meta name="googlebot" content="index, follow">
-<meta name="keywords" content="Mahavir Vora, Full Stack Developer, Angular, React, .NET, Engineering Manager, Solutions Architect, Playwright, Ahmedabad">
+<meta name="keywords" content="Mahavir Vora, Full Stack Developer, Angular, React, .NET, Solutions Architect, Playwright, Ahmedabad">
 
 <meta property="og:title" content="Mahavir Vora Portfolio" />
 <meta property="og:description" content="Solutions Architect" />
@@ -37,7 +37,7 @@
 <meta name="twitter:creator" content="@moxu13" />
 <meta name="twitter:image:alt" content="Mahavir Vora - Solutions Architect - Full Stack Developer" />
 
-<link rel="icon" type="image/svg+xml" href="/favicons/favicon.ico">
+<link rel="icon" href="/favicons/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
 <link rel="apple-touch-icon" href="/favicons/apple-touch-icon.png">
@@ -345,7 +345,6 @@ footer a{color:var(--teal);text-decoration:none}
       </div>
       <div class="hstats">
         <div class="hst"><span class="hst-n">10+</span><span class="hst-l">Years Exp.</span></div>
-        <!-- <div class="hst"><span class="hst-n">4×</span><span class="hst-l">Promotions</span></div> -->
         <div class="hst"><span class="hst-n">3</span><span class="hst-l">Certifications</span></div>
       </div>
     </div>
@@ -369,7 +368,7 @@ footer a{color:var(--teal);text-decoration:none}
         </div>
       </div>
       <div class="about-body">
-        <p>I'm a results-driven <strong>Solutions Architect and Full-Stack Developer</strong> with over 10 years of hands-on experience building scalable, high-performance web applications. Currently leading engineering at <strong>Encora Inc.</strong>, where I oversee Angular-powered in-store retail applications deployed on Microsoft Surface devices. I continue to work hands-on with code daily, contributing to frontend and backend development while leading the team.</p>
+        <p>I'm a results-driven <strong>Solutions Architect and Full-Stack Developer</strong> with over 10 years of hands-on experience building scalable, high-performance web applications. Currently leading engineering at <strong>Coforge</strong>, where I design scalable frontend architectures and oversee Angular-powered in-store retail applications deployed on Microsoft Surface devices. I continue to work hands-on with code daily, contributing to frontend and backend development while leading the team.</p>
         <p>My journey from Software Engineer to Solutions Architect at the same company reflects not just technical growth, but a genuine passion for building teams, mentoring engineers, and creating lasting engineering culture. I believe the best software is built by empowered, well-mentored teams.</p>
         <p>Outside work, I contribute to the developer community through technical writing and am passionate about how AI can augment engineering workflows — and I've proven strategic thinking extends beyond the keyboard, winning the Encora Chess Tournament back-to-back in 2025 and 2026.</p>
         <div class="hcards">
@@ -532,7 +531,6 @@ footer a{color:var(--teal);text-decoration:none}
       <div class="sbar"></div>
     </div>
     <div class="ag rv">
-      <!-- <div class="ac"><div class="ai">♟</div><div class="ab"><h4>Encora Chess Champion × 2</h4><p>Back-to-back winner of the Encora Chess Tournament in 2025 and 2026, awarded gold medal and trophy at both events.</p></div></div> -->
       <div class="ac"><div class="ai">🏆</div><div class="ab"><h4>Shine Award × 2</h4><p>Recognised twice for exceptional individual performance and project delivery at Encora Inc.</p></div></div>
       <div class="ac"><div class="ai">👥</div><div class="ab"><h4>Team Excellence Award</h4><p>Honoured for leading collaborative engineering teams to deliver high-impact results.</p></div></div>
       <div class="ac"><div class="ai">⭐</div><div class="ab"><h4>5 Years of Achievement</h4><p>Special recognition for sustained excellence and commitment over 5 years at Encora.</p></div></div>
@@ -614,12 +612,8 @@ footer a{color:var(--teal);text-decoration:none}
       </div>
       <div class="cirow">
         <div class="ciicon">🧠</div>
-        <div class="citext"><h4>Strategy Transfers to Engineering</h4><p>Chess hones the same thinking that makes a great Engineering Manager — anticipating downstream consequences, prioritising wisely, and staying composed in complex situations.</p></div>
+        <div class="citext"><h4>Strategy Transfers to Engineering</h4><p>Chess hones the same thinking that makes a great Solutions Architect — anticipating downstream consequences, prioritising wisely, and staying composed in complex situations.</p></div>
       </div>
-      <!-- <div class="cirow">
-        <div class="ciicon">🥇</div>
-        <div class="citext"><h4>Trophy Recipient</h4><p>Formally recognised with championship trophy at both Encora tournament events, held at Encora, Ahmedabad.</p></div>
-      </div> -->
     </div>
   </div>
 </section>
@@ -656,7 +650,7 @@ footer a{color:var(--teal);text-decoration:none}
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2026 Mahavir Vora &nbsp;·&nbsp; Engineering Manager &nbsp;·&nbsp; <a href="mailto:voramahavir@gmail.com">voramahavir@gmail.com</a></p>
+  <p>© 2026 Mahavir Vora &nbsp;·&nbsp; Solutions Architect &nbsp;·&nbsp; <a href="mailto:voramahavir@gmail.com">voramahavir@gmail.com</a></p>
 </footer>
 
 <script>
@@ -738,12 +732,13 @@ footer a{color:var(--teal);text-decoration:none}
         body: formData,
       });
 
-      // Success (optimistic due to no-cors)
-      document.getElementById('cnote').textContent='✓ Message sent! Mahavir will get back to you shortly.';
+      // no-cors responses are opaque, so delivery can't be confirmed client-side.
+      // Show a best-effort message and advise direct email as a fallback.
+      document.getElementById('cnote').textContent='✓ Message submitted (best effort). If you don't hear back soon, email voramahavir@gmail.com directly.';
       document.querySelector(".cform").reset();
     } catch (error) {
       console.error(error);
-      note.innerText = "Failed to send the message. Please try again.";
+      note.innerText = "Failed to send the message. Please email voramahavir@gmail.com directly.";
       note.style.color = "red";
     } finally {
       btn.disabled = false;
