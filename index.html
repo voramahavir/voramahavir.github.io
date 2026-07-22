@@ -58,7 +58,8 @@ html{scroll-behavior:smooth}
 body{font-family:var(--font);background:var(--bg);color:var(--ink);line-height:1.6}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--bdr)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--bdr);transform:translateY(-100%);transition:transform .35s cubic-bezier(.4,0,.2,1)}
+nav.show{transform:translateY(0)}
 .nav-inner{max-width:1140px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:66px}
 .nav-logo{display:flex;align-items:center;gap:.6rem;text-decoration:none}
 .nav-mark{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--teal),var(--td));display:flex;align-items:center;justify-content:center;flex-shrink:0}
@@ -361,7 +362,7 @@ footer a{color:var(--teal);text-decoration:none}
     </div>
     <div class="about-grid rv">
       <div>
-        <img src="/photos/mahavirvora.png" alt="Mahavir Vora" class="about-img"/>
+        <img src="/photos/mahavirvora.png" alt="Mahavir Vora" class="about-img" loading="lazy"/>
         <div class="chips">
           <span class="chip">Ahmedabad, India</span>
           <span class="chip">Remote Ready</span>
@@ -591,14 +592,14 @@ footer a{color:var(--teal);text-decoration:none}
     </div>
     <div class="chess-photos rv">
       <div class="cpwrap">
-        <img src="/photos/chess1.jpg" alt="Mahavir Vora playing chess at Encora Tournament 2025"/>
+        <img src="/photos/chess1.jpg" alt="Mahavir Vora playing chess at Encora Tournament 2025" loading="lazy"/>
         <div class="cpcap">
           <strong>Deep in concentration during the tournament</strong>
           <span>Encora Chess Tournament</span>
         </div>
       </div>
       <div class="cpwrap">
-        <img src="/photos/chess2.jpg" alt="Mahavir Vora receiving chess trophy at Encora"/>
+        <img src="/photos/chess2.jpg" alt="Mahavir Vora receiving chess trophy at Encora" loading="lazy"/>
         <div class="cpcap">
           <strong>Back-to-back champion</strong>
           <span>Encora, Ahmedabad · Championship Ceremony</span>
@@ -668,6 +669,7 @@ footer a{color:var(--teal);text-decoration:none}
       });
     },{threshold:0.07, rootMargin:'0px 0px -30px 0px'});
     els.forEach(function(el){ if(el.classList.contains('off')) io.observe(el); });
+    document.querySelector('nav').classList.toggle('show', window.scrollY > vh * 0.55);
   })();
 
   // Active nav
@@ -677,6 +679,9 @@ footer a{color:var(--teal);text-decoration:none}
     var cur='';
     secs.forEach(function(s){ if(window.scrollY >= s.offsetTop - 90) cur = s.id; });
     nas.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href')==='#'+cur); });
+    var nav = document.querySelector('nav');
+    nav.classList.toggle('show', window.scrollY > window.innerHeight * 0.55);
+    if(!nav.classList.contains('show')) document.getElementById('navLinks').style.cssText='';
   },{passive:true});
 
   // Mobile nav
