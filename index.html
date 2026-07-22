@@ -669,7 +669,7 @@ footer a{color:var(--teal);text-decoration:none}
       });
     },{threshold:0.07, rootMargin:'0px 0px -30px 0px'});
     els.forEach(function(el){ if(el.classList.contains('off')) io.observe(el); });
-    document.querySelector('nav').classList.toggle('show', window.scrollY > vh * 0.55);
+    document.querySelector('nav').classList.toggle('show', window.scrollY > 80);
   })();
 
   // Active nav
@@ -680,7 +680,7 @@ footer a{color:var(--teal);text-decoration:none}
     secs.forEach(function(s){ if(window.scrollY >= s.offsetTop - 90) cur = s.id; });
     nas.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href')==='#'+cur); });
     var nav = document.querySelector('nav');
-    nav.classList.toggle('show', window.scrollY > window.innerHeight * 0.55);
+    nav.classList.toggle('show', window.scrollY > 80);
     if(!nav.classList.contains('show')) document.getElementById('navLinks').style.cssText='';
   },{passive:true});
 
